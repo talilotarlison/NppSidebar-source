@@ -1,0 +1,31 @@
+name: Build NppSidebar
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main, master ]
+
+jobs:
+  build:
+    name: Build ${{ matrix.platform }}
+    runs-on: windows-2022
+    strategy:
+      fail-fast: false
+      matrix:
+        platform: [x64, Win32]
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Set up MSBuild
+        uses: microsoft/setup-msbuild@v2
+
+      - name: Build plugin
+        run: msbuild NppSidebar.sln /m /p:Configuration=Release /p:Platform=${{ matrix.platform }}
+
+      - name: Upload DLL
+        uses: actions/upload-artifact@v4
+        with:
+          name: NppSidebar-${{ matrix.platform }}
+          path: bin/${{ matrix.platform }}/Release/NppSidebar.dll
+          if-no-files-found: error
