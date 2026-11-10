@@ -1,27 +1,21 @@
 # NppSidebar (source package)
 
-Native C++ Notepad++ plugin starter project with an Explorer, Search and Extensions sidebar. This repository produces separate 32-bit and 64-bit build artifacts using GitHub Actions. The source ZIP itself does not include a compiled DLL.
+Native C++ Notepad++ plugin starter project. This package contains source only, not a tested DLL.
 
-## Requirements for a local build
-- Windows 10/11
-- Visual Studio 2022 with Desktop development with C++
-- Windows SDK (10.0.19041 or newer)
-- Notepad++ 8.x, 32-bit or 64-bit matching the selected build platform
+## Online build using GitHub Actions
+1. Upload the contents of this folder into the root of a GitHub repository. Keep `.github/workflows/build.yml` in place.
+2. Push to `main` or `master`, or run **Build NppSidebar** from the repository's **Actions** tab.
+3. Download the `NppSidebar-x64` artifact for 64-bit Notepad++, or `NppSidebar-Win32` for 32-bit.
+4. Extract the artifact DLL to `<Notepad++>\\plugins\\NppSidebar\\NppSidebar.dll`, fully exit Notepad++, then restart it.
 
-## Build locally
-Open `NppSidebar.sln`, select `Release` and the platform matching your Notepad++ (`x64` or `Win32`), then build the solution. Output: `bin\\<platform>\\Release\\NppSidebar.dll`.
+The workflow compiles and links on a GitHub-hosted Windows runner. It does not run Notepad++ or verify that the plugin loads at runtime. A successful build is not proof of runtime compatibility.
 
-## Build online with GitHub Actions
-1. Create a GitHub repository. For private source, set the repository to **Private**.
-2. Upload the contents of this folder to the repository root. Make sure `.github/workflows/build.yml` is included.
-3. Push to the `main` or `master` branch, or open the repository's **Actions** tab and run **Build NppSidebar** with **Run workflow**.
-4. Open the completed run. Under **Artifacts**, download `NppSidebar-x64` or `NppSidebar-Win32`. Each artifact contains the DLL for that architecture.
-5. Install the matching DLL by creating `<Notepad++>\\plugins\\NppSidebar\\` and placing `NppSidebar.dll` inside, then restart Notepad++.
+## Local build requirements
+Windows, Visual Studio 2022 Build Tools with Desktop development with C++ and a Windows SDK. Open `NppSidebar.sln`, choose `Release` and `x64` or `Win32`, and build.
 
-GitHub Actions compiles the code; it does not run Notepad++ to test the plugin. A successful build only confirms that the source compiled and linked on the runner, not that the plugin was runtime-tested.
+## Included starter features
+- Explorer selects a folder, lists files, and opens the selected file.
+- Search scans files under the selected workspace for plain text.
+- Extensions points users to Notepad++ Plugins Admin.
 
-## Features and limits
-- Explorer: choose a workspace folder, browse files, double-click a file to open it.
-- Search: scan files under the workspace and open a matching file.
-- Extensions: directs the user to Notepad++'s native Plugins Admin.
-- This is a starter implementation. Explorer displays a flattened file list. Search is synchronous plain-text scanning and skips files that are unreadable or larger than 4 MB.
+This is a prototype. Explorer displays a flattened file list; search is synchronous. The source has not been compiled or tested in this environment.
