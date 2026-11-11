@@ -8,3 +8,7 @@ O NppVim adiciona edição modal ao Notepad++. Isso significa que as teclas exec
 - **Modo de Comandos:** pressione `:` para executar comandos, como `:w` para salvar e `:help` para abrir a ajuda.
 
 O plugin funciona dentro do Notepad++ e aplica os comandos Vim ao documento aberto. Para conhecer outros atalhos e opções, consulte `NppVim/docs/help.txt`.
+
+- o plugin garante uma experiência no editor, igualmente ao editor original, preservando os mesmos comandos.
+
+[NppVim — projeto original no GitHub](https://github.com/h-jangra/NppVim)
