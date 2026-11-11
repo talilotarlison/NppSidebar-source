@@ -1,23 +1,37 @@
-# NppSidebar (source package)
+# NppVim para Notepad++
 
-Native C++ Notepad++ plugin starter project. This package contains source only, not a tested DLL.
+Este repositório reúne arquivos relacionados ao **NppVim**, um plugin que adiciona edição modal e atalhos inspirados no Vim ao Notepad++. Com ele, você pode navegar e editar usando modos e comandos familiares do Vim diretamente no editor.
 
-## Online build using GitHub Actions
-1. Upload the contents of this folder into the root of a GitHub repository. Keep `.github/workflows/build.yml` in place.
-2. Push to `main` or `master`, or run **Build NppSidebar** from the repository's **Actions** tab.
-3. Download the `NppSidebar-x64` artifact for 64-bit Notepad++, or `NppSidebar-Win32` for 32-bit.
-4. Extract the artifact DLL to `<Notepad++>\\plugins\\NppSidebar\\NppSidebar.dll`, fully exit Notepad++, then restart it.
+> Este repositório é uma cópia de apoio e pode não conter a versão mais recente. Para obter a versão atual, consultar a documentação e verificar compatibilidade, acesse o projeto original indicado no final desta página.
 
-The workflow compiles and links on a GitHub-hosted Windows runner. It does not run Notepad++ or verify that the plugin loads at runtime. A successful build is not proof of runtime compatibility.
+## Instalação rápida
 
-## Local build requirements
-Windows, Visual Studio 2022 Build Tools with Desktop development with C++ and a Windows SDK. Open `NppSidebar.sln`, choose `Release` and `x64` or `Win32`, and build.
+1. Feche completamente o Notepad++.
+2. Baixe uma versão do NppVim compatível com a arquitetura do seu Notepad++ (32 ou 64 bits) na página de releases do projeto original.
+3. Extraia os arquivos e copie a pasta `NppVim` para a pasta `plugins` do Notepad++. A estrutura deve ficar assim:
+   ```text
+   <pasta do Notepad++>\plugins\NppVim\NppVim.dll
+   ```
+   Se a pasta `NppVim` já existir, faça uma cópia de segurança antes de substituir os arquivos.
+4. Abra novamente o Notepad++. O plugin deverá aparecer no menu **Plugins**.
 
-## Included starter features
-- Explorer selects a folder, lists files, and opens the selected file.
-- Search scans files under the selected workspace for plain text.
-- Extensions points users to Notepad++ Plugins Admin.
+> Não sabe onde o Notepad++ está instalado? No Notepad++, use **Configurações > Preferências > Pastas** para conferir os caminhos disponíveis. A instalação precisa corresponder à arquitetura do aplicativo.
 
-This is a prototype. Explorer displays a flattened file list; search is synchronous. The source has not been compiled or tested in this environment.
+## Primeiros passos
 
-[NPPVim Notepad++](https://github.com/h-jangra/NppVim/tree/master)
+- Pressione `i` para entrar no modo de inserção.
+- Pressione `Esc` para voltar ao modo normal.
+- Pressione `:` para acessar o modo de comandos.
+- Use `:help` ou `:h` para consultar a ajuda do plugin.
+
+O NppVim oferece comandos e atalhos para navegação, seleção, busca, edição, macros e comandos como `:w` e `:wq`. Os recursos e as configurações podem variar conforme a versão instalada; consulte a documentação do projeto original para obter os detalhes completos.
+
+## Configuração
+
+A documentação do NppVim descreve os arquivos de configuração `nppvim.rc` e `config.ini`, incluindo caminhos padrão, opções e mapeamentos personalizados. Consulte a documentação da versão instalada antes de editar esses arquivos.
+
+## Projeto original
+
+Acesse o repositório original do NppVim para obter downloads, documentação, novidades e suporte:
+
+**[NppVim — projeto original no GitHub](https://github.com/h-jangra/NppVim)**
