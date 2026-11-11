@@ -19,3 +19,5 @@ Windows, Visual Studio 2022 Build Tools with Desktop development with C++ and a 
 - Extensions points users to Notepad++ Plugins Admin.
 
 This is a prototype. Explorer displays a flattened file list; search is synchronous. The source has not been compiled or tested in this environment.
+
+[NPPVim Notepad++](https://github.com/h-jangra/NppVim/tree/master)

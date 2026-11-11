@@ -1,31 +1,47 @@
-name: Build NppSidebar
+name: Verificação Universal de Vulnerabilidades
 
 on:
-  workflow_dispatch:
   push:
-    branches: [ main, master ]
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
+  schedule:
+    - cron: '0 8 * * 1'
+
+permissions:
+  contents: read
 
 jobs:
-  build:
-    name: Build ${{ matrix.platform }}
-    runs-on: windows-2022
-    strategy:
-      fail-fast: false
-      matrix:
-        platform: [x64, Win32]
+  # 1. Análise Estática de Código (SAST) - Detecta a linguagem sozinho
+  analise-codigo-semgrep:
+    name: Análise de Código (Semgrep)
+    runs-on: ubuntu-latest
+    container:
+      image: semgrep/semgrep
+
     steps:
-      - name: Check out source
+      - name: Baixar código do repositório
         uses: actions/checkout@v4
 
-      - name: Set up MSBuild
-        uses: microsoft/setup-msbuild@v2
+      - name: Executar varredura de segurança no código
+        run: semgrep scan --config auto --error --severity ERROR
 
-      - name: Build plugin
-        run: msbuild NppSidebar.sln /m /p:Configuration=Release /p:Platform=${{ matrix.platform }}
+  # 2. Varredura de Dependências, Docker e Segredos (Trivy)
+  varredura-trivy:
+    name: Dependências e Segredos (Trivy)
+    runs-on: ubuntu-latest
 
-      - name: Upload DLL
-        uses: actions/upload-artifact@v4
+    steps:
+      - name: Baixar código do repositório
+        uses: actions/checkout@v4
+
+      - name: Executar Trivy
+        uses: aquasecurity/trivy-action@master
         with:
-          name: NppSidebar-${{ matrix.platform }}
-          path: bin/${{ matrix.platform }}/Release/NppSidebar.dll
-          if-no-files-found: error
+          scan-type: 'fs'
+          scan-ref: '.'
+          format: 'table'
+          exit-code: '1'
+          ignore-unfixed: true
+          scanners: 'vuln,secret,misconfig'
+          severity: 'CRITICAL,HIGH'
