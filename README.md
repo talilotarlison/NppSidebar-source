@@ -4,6 +4,10 @@ Este repositório reúne arquivos relacionados ao **NppVim**, um plugin que adic
 
 > Este repositório é uma cópia de apoio e pode não conter a versão mais recente. Para obter a versão atual, consultar a documentação e verificar compatibilidade, acesse o projeto original indicado no final desta página.
 
+## Captura de tela
+
+![NppVim em execução no Notepad++, com o menu do plugin aberto](docs/screenshot/screenshot.png)
+
 ## Instalação rápida
 
 1. Feche completamente o Notepad++.

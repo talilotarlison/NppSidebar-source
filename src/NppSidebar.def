@@ -1,8 +1,0 @@
-LIBRARY "NppSidebar"
-EXPORTS
- getName
- setInfo
- getFuncsArray
- beNotified
- messageProc
- isUnicode

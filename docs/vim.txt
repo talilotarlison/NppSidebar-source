@@ -1,0 +1,10 @@
+# Como o Vim funciona no Notepad++
+
+O NppVim adiciona edição modal ao Notepad++. Isso significa que as teclas executam ações diferentes conforme o modo ativo:
+
+- **Modo Normal:** navegue e edite com comandos do Vim, como `h`, `j`, `k` e `l`. Pressione `Esc` para voltar a este modo.
+- **Modo Inserção:** pressione `i` para digitar texto normalmente; use `Esc` para sair.
+- **Modo Visual:** pressione `v` para selecionar texto e aplicar comandos à seleção.
+- **Modo de Comandos:** pressione `:` para executar comandos, como `:w` para salvar e `:help` para abrir a ajuda.
+
+O plugin funciona dentro do Notepad++ e aplica os comandos Vim ao documento aberto. Para conhecer outros atalhos e opções, consulte `NppVim/docs/help.txt`.
